@@ -1,0 +1,62 @@
+{% load static %}
+
+
+    <div class="col-md-12">
+        <!--   Basic Table  -->
+        <div class="panel panel-default">
+            <form method="POST" action="{% url 'catchUp' %}">
+                {% csrf_token %}
+            <div class="panel-heading">
+                <div class="form-group">
+                    <label> Müşteriler </label>
+                    <select class="form-control">
+                        {% for cus in customer %}
+                        <option>{{ cus.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="text-align: center">Sorular </th>
+                            <th style="text-align: center">Puanlama </th>
+                            <th style="text-align: center">Çarpan </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for foo in skorlar %}
+
+                        <tr>
+                            <td style="text-align: center">{{ foo.id }}</td>
+                            <td>{{ foo.question }}</td>
+                            <td style="text-align: center">
+                                {% for fo in puan %}
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault{{ foo.id }}" id="flexRadioDefault{{ foo.id }}">
+                                    &nbsp;
+                                    <label class="form-check-label" for="flexRadioDefault1"> {{ fo.score }} </label> &nbsp; &nbsp; &nbsp;
+                                {% endfor %}
+                            </td>
+
+                            <td style="text-align: center">{{ foo.carpan }}</td>
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <button class="btn btn-success" type="submit" style="float:right;"> Kayıt </button>
+
+            </form>
+        </div>
+        <!-- End  Basic Table  -->
+    </div>
+
+
+

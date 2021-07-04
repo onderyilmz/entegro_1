@@ -1,0 +1,132 @@
+{% load static %}
+<script>
+    $(document).ready(function (){
+        $('.chkvalues').click(function (){
+            var txt = ""
+            var note = ''
+            $('.chkvalues:checked').each(function (){
+               txt += $(this).val()+","
+            });
+            $('.chkvalues1').each(function (){
+                note += $(this).val()+","
+            });
+                 txt=txt.substring(0, txt.length-1);
+                $('#txtDisplay').val(txt);
+        });
+    });
+
+</script>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <form class="form-inline" method='POST' action="" enctype='multipart/form-data'>
+            {% csrf_token %}
+
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <label> Müşteriler </label>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                            <tr>
+                                <th> ID </th>
+                                <th> Sorular </th>
+                                <th> Puanlama </th>
+                                <th> Carpan </th>
+                            </tr>
+                            </thead>
+
+                            <div class="form-group">
+                                <select class="form-control">
+                                    {% for c in customer %}
+                                        <option class="chkvalues" value="{{ c.name }}">{{ c.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <tbody>
+
+                            {% for q in que %}
+                                <tr>
+                                    <th> {{ q.id }}</th>
+                                    <th>{{ q.question }} </th>
+                                    <!-- ilk hali bu
+                                    <th>
+                                        <select class="form-control ">
+                                            <option class="chkvalues" value="{{ q.options1 }}">{{ q.options1 }}</option>
+                                            <option class="chkvalues"  value="{{ q.options2 }}">{{ q.options2 }}</option>
+                                            <option class="chkvalues"  value="{{ q.options3 }}">{{ q.options3 }}</option>
+                                            <option class="chkvalues"  value="{{ q.options4 }}">{{ q.options4 }}</option>
+
+                                        </select>
+                                    </th>
+                                    -->
+                                    <th>
+                                        <input class="form-check-input chkvalues" value="{{  q.options1 }}" type="radio" name="flexRadioDefault{{ q.id }}" id="flexRadioDefault{{  q.id}}">
+                                        <label class="form-check-label " for="flexRadioDefault1"> {{  q.options1 }} </label> &nbsp; &nbsp; &nbsp;
+                                        <input class="form-check-input chkvalues" value="{{  q.options2 }}" type="radio" name="flexRadioDefault{{ q.id }}" id="flexRadioDefault{{  q.id}}">
+                                        <label class="form-check-label " for="flexRadioDefault1"> {{  q.options2 }} </label> &nbsp; &nbsp; &nbsp;
+                                        <input class="form-check-input chkvalues" value="{{  q.options3 }}" type="radio" name="flexRadioDefault{{ q.id }}" id="flexRadioDefault{{  q.id}}">
+                                        <label class="form-check-label " for="flexRadioDefault1"> {{  q.options3 }} </label> &nbsp; &nbsp; &nbsp;
+                                        <input class="form-check-input chkvalues" value="{{  q.options4 }}" type="radio" name="flexRadioDefault{{ q.id }}" id="flexRadioDefault{{  q.id}}">
+                                        <label class="form-check-label " for="flexRadioDefault1"> {{  q.options4 }} </label> &nbsp; &nbsp; &nbsp;
+                                    </th>
+                                     <th>{{ q.carpan }} </th>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <input type="text" id="txtDisplay" readonly name="coursee"><br>
+                        <textarea class="chkvalues1" id="w3review" name="w3review" rows="3" cols="55">
+
+                                </textarea>
+                        <br>
+                        <input style="float:right;" class="btn btn-success " type="submit" value="Gönder" id="but1">
+                        </br>&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+           {% if messages %}
+                {% for message in messages %}
+                
+                {% endfor %}
+           {% endif %}  
+
+        </form>
+
+        <!--End Advanced Tables -->
+    </div>
+</div>
+<!-- /. ROW  -->
+
+<!-- /. ROW  -->
+
+<!-- /. ROW  -->
+
+<!-- /. ROW  -->
+
+<!-- /. PAGE INNER  -->
+<!-- /. PAGE WRAPPER  -->
+<!-- /. WRAPPER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="{% static 'assets/js/bootstrap.min.js' %} "></script>
+<!-- METISMENU SCRIPTS -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="{% static 'assets/js/dataTables/jquery.dataTables.js' %} "></script>
+<script src="{% static 'assets/js/dataTables/dataTables.bootstrap.js' %} "></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').dataTable();
+    });
+</script>
+<!-- CUSTOM SCRIPTS -->
+<script src="{% static 'assets/js/custom.js' %} "></script>
+    
+   

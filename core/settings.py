@@ -46,7 +46,14 @@ INSTALLED_APPS = [
     'department_1',
 
     # Zamanlanmış Görevler
-    'django_celery_beat',
+    #'django_celery_beat',
+
+    # Ckeditor
+    'ckeditor',
+    'ckeditor_uploader',
+
+    # Choice Fields
+    'django_utils',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +146,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+
+# Ckeditor
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 200,
+        'width': 700,
+        },
+    }

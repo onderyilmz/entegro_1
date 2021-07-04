@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 # Create your views here.
 
 
@@ -7,15 +6,19 @@ from django.shortcuts import render
 def index(request):
     context = dict()
 
-
     context['menu'] = 'index'
-    return render(request, 'department_1/index.html', context) 
+    return render(request, 'solaredge/index.html', context)
 
 
 def second(request):
     context = dict()
 
-
     context['menu'] = 'second'
-    return render(request, 'department_1/second.html', context) 
+    return render(request, 'solaredge/second.html', context)
 
+
+
+def question(request):
+    context = dict()
+
+    return render(request, 'solaredge/question.html', context)

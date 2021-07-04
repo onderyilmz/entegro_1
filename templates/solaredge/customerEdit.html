@@ -1,0 +1,23 @@
+
+
+{% load static %}
+
+
+{% block content %}
+    <h1>Yeni post</h1>
+    <form class="form-inline" method='POST' action="" enctype='multipart/form-data'>{% csrf_token %}
+
+
+        <tr class="odd gradeX">
+
+            <td> {{form.NUMS}}&nbsp;&nbsp;</td>
+
+        </tr>
+        <button type="submit" class="save btn btn-default">Kaydet</button>
+
+    </form>
+
+{% endblock %}
+
+
+
